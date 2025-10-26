@@ -1,0 +1,62 @@
+import type { ThemeConfig } from 'antd';
+
+export const antdTheme: ThemeConfig = {
+  token: {
+    fontSize: 16,
+    controlHeight: 38,
+    colorPrimary: '#a9005f', // --color-primary
+    colorBgContainerDisabled: 'rgba(0,0,0,0.05)',
+    colorTextDisabled: 'rgba(0,0,0,0.6)',
+  },
+
+  components: {
+    Select: {
+      activeOutlineColor: 'var(--color-primary)',
+      optionActiveBg: 'rgba(from var(--color-blue-1) r g b / 75%)',
+      optionSelectedBg: 'var(--color-secondary)',
+      optionSelectedColor: 'white',
+      optionFontSize: 14,
+      optionHeight: 32,
+    },
+    Button: {
+      primaryShadow: 'none',
+      defaultHoverColor: 'black',
+      defaultShadow: 'none',
+      // color=blue
+      blue1: 'var(--color-blue-1)',
+      blue2: 'var(--color-blue-2)',
+      blue3: 'var(--color-blue-3)',
+      blue4: 'var(--color-blue-4)',
+      blue5: 'var(--color-blue-5)',
+      blue6: 'var(--color-blue-6)',
+      blue7: 'var(--color-blue-7)',
+      blue8: 'var(--color-blue-8)',
+      blue9: 'var(--color-blue-9)',
+      blue10: 'var(--color-blue-10)',
+      // color=red
+      red1: 'var(--color-red-1)',
+      red2: 'var(--color-red-2)',
+      red3: 'var(--color-red-3)',
+      red4: 'var(--color-red-4)',
+      red5: 'var(--color-red-5)',
+      red6: 'var(--color-red-6)',
+      red7: 'var(--color-red-7)',
+      red8: 'var(--color-red-8)',
+      red9: 'var(--color-red-9)',
+      red10: 'var(--color-red-10)',
+    },
+    Input: { activeShadow: '0 0 0 1px var(--color-primary)' },
+    DatePicker: {
+      activeShadow: '0 0 0 1px var(--color-primary)',
+    },
+    Table: {
+      borderColor: 'rgba(from var(--color-blue-5) r g b / 25%)',
+      headerColor: 'var(--color-secondary)',
+      headerBg: 'rgba(from var(--color-blue-1) r g b / 25%)',
+      rowSelectedBg: 'rgba(from var(--color-blue-1) r g b / 50%)',
+      rowSelectedHoverBg: 'var(--color-blue-1)',
+      headerSortActiveBg: 'rgba(from var(--color-blue-1) r g b / 75%)',
+      headerSortHoverBg: 'var(--color-blue-1)',
+    },
+  },
+};
