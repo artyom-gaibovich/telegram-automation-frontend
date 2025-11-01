@@ -1,0 +1,8 @@
+.main-layout {
+  display: flex;
+  flex-direction: column;
+
+  &__content {
+    padding: 32px 48px;
+  }
+}

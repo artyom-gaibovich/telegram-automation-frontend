@@ -1,0 +1,212 @@
+:root {
+  --font-main: 'Jetbrains Mono', sans-serif;
+  --bg-color: #333333;
+  --text-primary: #FFFFFF;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  font-weight: 400;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--text-primary);
+}
+
+// Базовые стили текста
+h1,
+.h1 {
+  font-family: var(--font-main);
+  color: var(--text-primary);
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+  margin: 0;
+}
+
+h2,
+.h2 {
+  font-family: var(--font-main);
+  color: var(--text-primary);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  line-height: var(--line-height-snug);
+  margin: 0;
+}
+
+h3,
+.h3 {
+  font-family: var(--font-main);
+  color: var(--text-primary);
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+}
+
+h4,
+.h4 {
+  font-family: var(--font-main);
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  line-height: var(--line-height-normal);
+  margin: 0;
+}
+
+p,
+.p {
+  font-family: var(--font-main);
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0;
+}
+
+// Специальные классы из дизайн-системы
+.text-display {
+  font-size: var(--font-size-2xl);
+  line-height: var(--line-height-tight);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.text-title {
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-snug);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.text-subtitle {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  font-weight: 300;
+  color: var(--text-primary);
+}
+
+.text-body {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+.text-caption {
+  font-size: var(--font-size-sm);
+  line-height: 1.43;
+  font-weight: 400;
+  color: var(--color-accent-light);
+}
+
+.text-small {
+  font-size: var(--font-size-xs);
+  line-height: 1.66;
+  font-weight: 400;
+  color: var(--color-accent-light);
+}
+
+// Цветовые модификаторы
+.text-primary {
+  color: var(--color-primary) !important;
+}
+
+.text-accent {
+  color: var(--color-accent) !important;
+}
+
+.text-light-blue {
+  color: var(--color-accent-light) !important;
+}
+
+// Насыщенность шрифта
+.font-thin {
+  font-weight: 100 !important;
+}
+
+.font-light {
+  font-weight: 300 !important;
+}
+
+.font-normal {
+  font-weight: 400 !important;
+}
+
+.font-medium {
+  font-weight: 500 !important;
+}
+
+.font-semibold {
+  font-weight: 600 !important;
+}
+
+.font-bold {
+  font-weight: 700 !important;
+}
+
+// Ссылки
+a {
+  color: inherit;
+  text-decoration: none;
+
+  &:not([href]):not([class]) {
+    color: inherit;
+
+    &:hover {
+      color: inherit;
+    }
+  }
+}
+
+// Особые стили для ссылок без класса
+a:not([class]) {
+  color: var(--color-primary);
+  font-family: var(--font-main);
+  font-weight: 600;
+}
+
+// Формы
+input,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+// Плейсхолдеры
+input::placeholder,
+textarea::placeholder {
+  color: currentColor;
+  opacity: 1;
+}
+
+// Кнопки
+button {
+  cursor: pointer;
+  font-family: var(--font-main);
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+// Дополнительные элементы
+b, strong {
+  font-weight: 700;
+}
+
+legend {
+  line-height: inherit;
+}
+
+img {
+  color: transparent;
+}

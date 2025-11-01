@@ -1,0 +1,56 @@
+// MARGIN
+@for $i from -40 through 40 {
+  .mt-#{$i} {
+    margin-top: calc(4px * #{$i}) !important;
+  }
+  .mr-#{$i} {
+    margin-right: calc(4px * #{$i}) !important;
+  }
+  .mb-#{$i} {
+    margin-bottom: calc(4px * #{$i}) !important;
+  }
+  .ml-#{$i} {
+    margin-left: calc(4px * #{$i}) !important;
+  }
+  .ma-#{$i} {
+    margin: calc(4px * #{$i}) !important;
+  }
+  .mrl-#{$i} {
+    margin: auto calc(4px * #{$i}) !important;
+  }
+  .mtb-#{$i} {
+    margin: calc(4px * #{$i}) auto !important;
+  }
+}
+
+// PADDING
+@for $i from 0 through 40 {
+  .pt-#{$i} {
+    padding-top: calc(4px * #{$i}) !important;
+  }
+  .pr-#{$i} {
+    padding-right: calc(4px * #{$i}) !important;
+  }
+  .pb-#{$i} {
+    padding-bottom: calc(4px * #{$i}) !important;
+  }
+  .pl-#{$i} {
+    padding-left: calc(4px * #{$i}) !important;
+  }
+  .pa-#{$i} {
+    padding: calc(4px * #{$i}) !important;
+  }
+  .prl-#{$i} {
+    padding: 0 calc(4px * #{$i}) !important;
+  }
+  .ptb-#{$i} {
+    padding: calc(4px * #{$i}) 0 !important;
+  }
+}
+
+// FONT SIZE
+@for $i from 6 through 40 {
+  .fz-#{$i} {
+    font-size: #{$i}px !important;
+  }
+}

@@ -1,0 +1,71 @@
+:root {
+  // Основные шрифты
+  --font-main: 'Jetbrains Mono', 'Roboto Mono', monospace;
+  --font-family: 'Jetbrains Mono', 'Roboto Mono', monospace;
+
+  // Цветовая палитра
+  --bg-color: #333333;
+  --text-primary: #FFFFFF;
+
+  // Основные цвета из дизайн-системы
+  --color-primary: #D33C44;
+  --color-primary-light: #E96C72;
+  --color-primary-dark: #C34849;
+
+  --color-accent: #A5D6FF;
+  --color-accent-light: rgb(175, 213, 251);
+
+  --color-secondary: #1d2172;
+
+  --color-section: #18202A;
+
+  // Синяя палитра (расширенная)
+  --color-blue-1: hsl(237, 60%, 90%);
+  --color-blue-2: hsl(237, 60%, 80%);
+  --color-blue-3: hsl(237, 60%, 70%);
+  --color-blue-4: hsl(237, 60%, 60%);
+  --color-blue-5: hsl(237, 60%, 40%);
+  --color-blue-6: hsl(237, 60%, 30%);
+  --color-blue-7: hsl(237, 60%, 25%);
+  --color-blue-8: hsl(237, 60%, 20%);
+  --color-blue-9: hsl(237, 60%, 15%);
+  --color-blue-10: hsl(237, 60%, 10%);
+
+  // Красная палитра (расширенная)
+  --color-red-1: hsl(0, 100%, 90%);
+  --color-red-2: hsl(0, 100%, 85%);
+  --color-red-3: hsl(0, 100%, 75%);
+  --color-red-4: hsl(0, 100%, 60%);
+  --color-red-5: hsl(0, 100%, 50%);
+  --color-red-6: hsl(0, 100%, 40%);
+  --color-red-7: hsl(0, 100%, 30%);
+  --color-red-8: hsl(0, 100%, 25%);
+  --color-red-9: hsl(0, 100%, 15%);
+  --color-red-10: hsl(0, 100%, 10%);
+
+  // Размеры шрифтов из дизайн-системы
+  --font-size-xs: 0.75rem;    // 12px
+  --font-size-sm: 0.875rem;   // 14px
+  --font-size-base: 1rem;     // 16px
+  --font-size-lg: 1.25rem;    // 20px
+  --font-size-xl: 1.5rem;     // 24px
+  --font-size-2xl: 3.75rem;   // 60px
+
+  // Межстрочные интервалы
+  --line-height-tight: 1.2;
+  --line-height-snug: 1.334;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.6;
+  --line-height-loose: 1.75;
+
+  // Наборы шрифтов
+  --font-xs: 400 var(--font-size-xs) / 1.66 var(--font-main);
+  --font-sm: 400 var(--font-size-sm) / 1.43 var(--font-main);
+  --font-base: 400 var(--font-size-base) / var(--line-height-normal) var(--font-main);
+  --font-lg: 400 var(--font-size-lg) / var(--line-height-relaxed) var(--font-main);
+  --font-xl: 400 var(--font-size-xl) / var(--line-height-snug) var(--font-main);
+
+  // Специальные варианты
+  --font-button: 700 var(--font-size-sm) / var(--line-height-loose) var(--font-main);
+  --font-display: 700 var(--font-size-2xl) / var(--line-height-tight) var(--font-main);
+}
