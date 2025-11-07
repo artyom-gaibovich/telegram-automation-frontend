@@ -1,0 +1,45 @@
+.form-item {
+  &.ant-form-item {
+    margin-bottom: 0;
+  }
+
+  & .ant-form-item-label {
+    padding-bottom: 4px !important;
+
+    & label {
+      color: #666666;
+      height: auto !important;
+    }
+  }
+
+  /* Отображение признака обязательности (*) после label'а */
+  & .ant-form-item-required {
+    &:not(.ant-form-item-required-mark-optional) {
+      &:before {
+        display: none !important;
+      }
+
+      &:after {
+        visibility: visible !important;
+        display: inline-block;
+        color: var(--color-primary, red);
+        font-size: 16px;
+        line-height: 1;
+        content: '*';
+      }
+    }
+  }
+
+  & .ant-form-item-control-input-content {
+    & > .ant-input-number {
+      width: 100%;
+    }
+  }
+}
+
+/* util класс для фиксации высоты элемента с ошибкой */
+.form-item-fixed-error {
+  & .ant-form-item-additional {
+    height: 0;
+  }
+}

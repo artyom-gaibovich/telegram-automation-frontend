@@ -1,0 +1,11 @@
+.input-textarea {
+  &.ant-input {
+    &[readonly] {
+      &:hover,
+      &:focus,
+      &:focus-within {
+        border-color: #adadad !important;
+      }
+    }
+  }
+}

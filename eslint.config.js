@@ -77,7 +77,7 @@ export default tseslint.config([
       // Кастомные правила
       'no-debugger': 'warn',
       'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'warn',
+      'react-hooks/exhaustive-deps': 'off',
       'react/jsx-uses-react': 'off',
       '@typescript-eslint/no-empty-interface': 'warn',
       '@typescript-eslint/no-empty-function': 'warn',

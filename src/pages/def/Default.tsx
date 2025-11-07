@@ -1,5 +1,4 @@
-import '../../src/app/styles/index.css'
-const App = () => {
+const DefaultPage = () => {
   return (
     <div className="app">
       <header className="header">
@@ -149,4 +148,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default DefaultPage;

@@ -1,10 +1,11 @@
-import type { ThemeConfig } from 'antd';
+import { theme, type ThemeConfig } from 'antd';
 
 export const antdTheme: ThemeConfig = {
+  algorithm: theme.darkAlgorithm,
   token: {
     fontSize: 16,
     controlHeight: 38,
-    colorPrimary: '#a9005f', // --color-primary
+    colorPrimary: '#d63a51', // --color-primary
     colorBgContainerDisabled: 'rgba(0,0,0,0.05)',
     colorTextDisabled: 'rgba(0,0,0,0.6)',
   },
@@ -48,15 +49,6 @@ export const antdTheme: ThemeConfig = {
     Input: { activeShadow: '0 0 0 1px var(--color-primary)' },
     DatePicker: {
       activeShadow: '0 0 0 1px var(--color-primary)',
-    },
-    Table: {
-      borderColor: 'rgba(from var(--color-blue-5) r g b / 25%)',
-      headerColor: 'var(--color-secondary)',
-      headerBg: 'rgba(from var(--color-blue-1) r g b / 25%)',
-      rowSelectedBg: 'rgba(from var(--color-blue-1) r g b / 50%)',
-      rowSelectedHoverBg: 'var(--color-blue-1)',
-      headerSortActiveBg: 'rgba(from var(--color-blue-1) r g b / 75%)',
-      headerSortHoverBg: 'var(--color-blue-1)',
     },
   },
 };

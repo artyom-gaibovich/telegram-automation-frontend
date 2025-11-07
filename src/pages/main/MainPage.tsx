@@ -1,5 +1,4 @@
 import './MainPage.scss';
-import App from '@pages/App';
 import { bem } from '@shared/libs';
 
 const b = bem('main-page');
@@ -7,7 +6,7 @@ const b = bem('main-page');
 const MainPage = () => {
   return (
     <div className={b()}>
-      <App></App>
+     <div>Hello world</div>
     </div>
   );
 };
