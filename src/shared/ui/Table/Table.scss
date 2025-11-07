@@ -1,0 +1,7 @@
+.table {
+  &_row-clickable {
+    & .ant-table-row {
+      cursor: pointer;
+    }
+  }
+}

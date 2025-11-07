@@ -1,0 +1,14 @@
+.form-date-picker {
+  &__field.ant-picker {
+    width: 100%;
+  }
+
+  &__label {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__condition {
+    margin-left: auto;
+  }
+}

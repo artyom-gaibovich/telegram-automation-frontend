@@ -1,6 +1,6 @@
 import axios, { type AxiosInstance, type AxiosRequestConfig } from 'axios';
 
-export const API_SERVICE_BASE_URL = '/api/v1';
+export const API_SERVICE_BASE_URL = '/api';
 
 export const ApiService = (config?: AxiosRequestConfig): AxiosInstance => {
   const headers: AxiosRequestConfig['headers'] = {};

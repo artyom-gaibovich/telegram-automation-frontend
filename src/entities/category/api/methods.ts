@@ -10,9 +10,8 @@ const create = async (body: Category.Api.Create.Request.Body) => {
 };
 
 const findAll = async () => {
-  const { data } = await ApiService().get<Category.Api.FindAll.Response.Data>(
-    `/categories`,
-  );
+  const { data } =
+    await ApiService().get<Category.Api.FindAll.Response.Data>(`/categories`);
   return data;
 };
 
@@ -23,10 +22,7 @@ const findOne = async (id: string) => {
   return data;
 };
 
-const update = async (
-  id: string,
-  body: Category.Api.Update.Request.Body,
-) => {
+const update = async (id: string, body: Category.Api.Update.Request.Body) => {
   const { data } = await ApiService().patch<Category.Api.Update.Response.Data>(
     `/categories/${id}`,
     body,

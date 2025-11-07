@@ -1,0 +1,72 @@
+.sider {
+  --sider-width: 290px;
+
+  grid-area: sider;
+  background: var(--bg-color);
+  width: var(--sider-width);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: width ease-in-out 200ms;
+  box-shadow: 1px 5px 15px rgba(121, 121, 121, 0.4);
+
+  & > ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    opacity: 1;
+    transition: opacity ease-in-out 200ms;
+    width: var(--sider-width);
+
+    & > li {
+      margin-top: 12px;
+      & > a {
+        display: block;
+        width: calc(100% - 16px);
+        margin: 4px 8px;
+        padding: 4px 4px 4px 12px;
+        border-radius: 8px;
+        color: var(--text-primary);
+        transition: background-color ease-in-out 200ms;
+
+        &:hover {
+          background: rgba(from var(--color-blue-1) r g b / 50%);
+        }
+
+        &.active {
+          background: rgba(from var(--color-blue-1) r g b / 50%);
+        }
+      }
+    }
+  }
+
+  &:not(.sider_open) {
+    width: 56px;
+    box-shadow: none;
+
+    & > ul {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  &__toggle-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+
+    &:hover {
+      background-color: var(--color-primary);
+      & path {
+        fill: white;
+      }
+    }
+  }
+}
