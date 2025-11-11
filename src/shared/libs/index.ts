@@ -4,3 +4,5 @@ export { usePagination, type IUsePagination } from './pagination/usePagination';
 export { InputTextarea } from '@shared/ui/InputTextarea/InputTextarea';
 export type { InputTextareaProps } from '@shared/ui/InputTextarea/InputTextarea';
 export { Yup } from './yup';
+export { fileUtils } from './fileUtils';
+export { useAntdApp } from './antd';

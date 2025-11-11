@@ -4,6 +4,8 @@ import CreateCategoryPage from '@pages/create-category/CreateCategoryPage';
 import EditCategoryPage from '@pages/edit-category/EditCategoryPage';
 import LoginPage from '@pages/login/LoginPage';
 import MainPage from '@pages/main/MainPage';
+import TranscriptionListPage from '@pages/transcription-list/TranscriptionListPage';
+import TranscriptionUploadPage from '@pages/transcription-upload/TranscriptionUploadPage';
 import { RoutePath } from './routePath';
 
 export const routeConfig: ReadonlyArray<RouteProps> = [
@@ -24,8 +26,16 @@ export const routeConfig: ReadonlyArray<RouteProps> = [
     Component: CreateCategoryPage,
   },
   {
+    path: RoutePath.TranscriptionUpload,
+    Component: TranscriptionUploadPage,
+  },
+  {
     path: RoutePath.EditCategory,
     Component: EditCategoryPage,
+  },
+  {
+    path: RoutePath.TranscriptionList,
+    Component: TranscriptionListPage,
   },
   {
     path: RoutePath.FormConstructor,

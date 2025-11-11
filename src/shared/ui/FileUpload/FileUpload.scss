@@ -1,0 +1,165 @@
+.file-upload {
+  $border: 1px solid var(--color-border);
+  $background: rgba(242, 243, 247, 1);
+  $text: rgba(0, 0, 0, 0.6);
+
+  width: 100%;
+  max-width: 100%;
+
+  &_compact {
+    .file-upload__file-item-name {
+      margin: 0 8px 8px;
+    }
+    .file-upload_upload-disabled .ant-upload-list {
+      margin-top: 8px;
+    }
+    .ant-upload-btn {
+      text-align: left;
+      padding: 4px !important;
+    }
+  }
+
+  &__compact-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__compact-hint {
+    color: $text;
+  }
+
+  > .ant-upload-wrapper:first-of-type {
+    display: block;
+    border: $border;
+    border-radius: 8px !important;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .ant-upload {
+    &-drag {
+      background: none;
+      border-color: transparent !important;
+      text-align: -webkit-center;
+      width: 100%; // Добавлено
+      &-hover {
+        border-color: var(--color-primary) !important;
+      }
+    }
+  }
+
+  &__wrapper {
+    border: $border;
+    border-radius: 8px;
+    padding: 15px;
+  }
+
+  // Элемент для загрузки файлов
+  &__upload-area {
+    background: none;
+    border: none;
+    text-align: center;
+    padding-bottom: 24px;
+
+    &-icon {
+      margin-bottom: 0;
+    }
+
+    &-hidden-icon {
+      display: none;
+    }
+  }
+
+  // Элемент списка файлов
+  &__file-item {
+    &-name {
+      display: flex;
+      margin: 0 16px 16px;
+      width: -webkit-fill-available;
+    }
+
+    &:hover {
+      background: none;
+    }
+
+    &-actions {
+      display: flex;
+      align-items: center;
+      padding-left: 8px;
+
+      .icon {
+        cursor: pointer;
+        flex-shrink: 0;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+
+  &__file-content {
+    border: none;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+    gap: 8px;
+    border-radius: 8px;
+    background-color: rgb(242, 243, 247);
+    padding: 8px 20px;
+    transition:
+      color ease-in-out 200ms,
+      background-color ease-in-out 200ms;
+
+    &:hover {
+      color: var(--color-primary);
+      background-color: rgb(235, 237, 247);
+    }
+
+    & > #filename {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &__drag-container {
+    p {
+      color: $text;
+    }
+
+    &-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 4px;
+
+      span {
+        padding-left: 10px;
+      }
+    }
+  }
+
+  &__drag-container-hint {
+    margin-bottom: 8px;
+  }
+
+  &__file-item-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    > .divider {
+      width: 100%;
+    }
+  }
+
+  &_upload-disabled {
+    & .ant-upload-drag {
+      display: none;
+    }
+    & .ant-upload-list {
+      margin-top: 16px;
+    }
+  }
+}

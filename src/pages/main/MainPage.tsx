@@ -6,7 +6,7 @@ const b = bem('main-page');
 const MainPage = () => {
   return (
     <div className={b()}>
-     <div>Hello world</div>
+      <div>Hello world</div>
     </div>
   );
 };

@@ -1,7 +1,9 @@
 import './Table.scss';
 import { Table as AntTable, type TableProps as AntTableProps } from 'antd';
 import type { SorterResult } from 'antd/lib/table/interface';
-import { bem, ORDER_DIRECTION, type Pagination } from '@shared/libs';
+import { ORDER_DIRECTION } from '@shared/libs';
+import bem from '@shared/libs/bem';
+import type { Pagination } from '@shared/libs/pagination/types';
 
 const b = bem('table');
 
