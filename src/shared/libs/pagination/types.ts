@@ -1,4 +1,4 @@
- export declare namespace Pagination {
+export declare namespace Pagination {
   interface Params {
     page: number;
     size: number;

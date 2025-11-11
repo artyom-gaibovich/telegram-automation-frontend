@@ -2,7 +2,9 @@ export enum RoutePath {
   Main = '/',
   FormConstructor = '/form-constructor',
   Login = '/login',
-  CategoryList= '/category-list',
-  CategoryCreate= '/category/create',
-  EditCategory= '/category/edit/:id',
+  CategoryList = '/category-list',
+  CategoryCreate = '/category/create',
+  EditCategory = '/category/edit/:id',
+  TranscriptionUpload = '/transcription/upload',
+  TranscriptionList = '/transcription/list',
 }
