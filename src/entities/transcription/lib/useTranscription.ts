@@ -9,7 +9,6 @@ export interface IUseTranscription {
   onChangePagination: IUsePagination['onChangePagination'];
   queryRefetch: () => void;
 }
-
 export function useTranscription(): IUseTranscription {
   const [refetch, setRefetch] = useState<number>(0);
 
@@ -28,5 +27,28 @@ export function useTranscription(): IUseTranscription {
     onChangePagination,
     query,
     queryRefetch,
+  };
+}
+
+export interface IUseTranscriptionDetail {
+  query: UseQueryResult<Transcription.Item | null>;
+}
+
+export function useTranscriptionDetail(
+  transcriptionId: string,
+): IUseTranscriptionDetail {
+  const query = useQuery<Transcription.Item | null>({
+    queryKey: ['transcription', transcriptionId],
+    retry: 1,
+    queryFn: () => {
+      if (!transcriptionId) {
+        return null;
+      }
+      return transcriptionApi.findOne(transcriptionId);
+    },
+  });
+
+  return {
+    query,
   };
 }

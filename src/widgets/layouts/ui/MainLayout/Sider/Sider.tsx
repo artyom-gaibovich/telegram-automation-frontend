@@ -16,6 +16,10 @@ const SIDE_MENU_ITEMS = [
     key: RoutePath.CategoryList,
     label: `Список категорий`,
   },
+  {
+    key: RoutePath.TranscriptionList,
+    label: `Список транскрипций`,
+  },
 ];
 
 export const Sider = () => {
@@ -27,7 +31,7 @@ export const Sider = () => {
     setIsOpen((prev) => !prev);
   };
 
-  const isSiderHide = [].includes(location.pathname as RoutePath);
+  const isSiderHide = [].includes(location.pathname);
 
   if (isSiderHide) {
     return null;

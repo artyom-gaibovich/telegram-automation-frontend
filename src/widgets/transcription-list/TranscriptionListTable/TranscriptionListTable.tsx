@@ -8,6 +8,10 @@ import { RoutePath } from '@shared/config/router';
 import type { IUsePagination } from '@shared/libs';
 import { Button, Checkbox } from '@shared/ui';
 import { Table } from '@shared/ui/Table/Table';
+import {
+  EditableCell,
+  EditableRow,
+} from '@widgets/transcription-list/TranscriptionListTable/ui/EditableCell';
 
 interface Props {
   query: UseQueryResult<Transcription.Api.FindAll.Response.Data>;
@@ -42,6 +46,14 @@ export const TranscriptionListTable = ({
     onError: (err) => {
       console.error(err);
     },
+  });
+
+  const updateOrderMutation = useMutation({
+    mutationFn: async ({ id, order }: { id: string; order: number }) => {
+      return transcriptionApi.updatePartial(id, { order });
+    },
+
+    onSuccess: () => query.refetch(),
   });
 
   const nameFilters = useMemo(() => {
@@ -86,6 +98,46 @@ export const TranscriptionListTable = ({
     });
   };
 
+  const baseColumns: any[] = [
+    {
+      align: 'center',
+      title: 'Наименование файла',
+      dataIndex: 'fileName',
+      onCell: (record: any) => ({
+        onClick: () =>
+          navigate(RoutePath.TranscriptionDetail.replace(':id', record.id)),
+        style: { cursor: 'pointer', color: '#1890ff' },
+      }),
+    },
+    {
+      align: 'center',
+      title: 'Код курса',
+      dataIndex: 'code',
+      filters: nameFilters,
+      filteredValue: tableParams.filters?.code || null,
+    },
+    {
+      align: 'center',
+      title: 'Порядок',
+      dataIndex: 'order',
+      editable: true,
+    },
+    {
+      align: 'center',
+      title: 'Выбрать для удаления',
+      key: 'checkboxToDelete',
+      render: (_value: any, record: any) => {
+        return (
+          <Checkbox
+            value={record.id}
+            checked={selectedRows.includes(record.id)}
+            onChange={handleClickSelect}
+          />
+        );
+      },
+    },
+  ];
+
   const handleClickSelect = (e: CheckboxChangeEvent) => {
     const rowId = e.target.value;
 
@@ -97,6 +149,28 @@ export const TranscriptionListTable = ({
       }
     });
   };
+
+  const handleSave = (row: any) => {
+    updateOrderMutation.mutate({
+      id: row.id,
+      order: Number(row.order),
+    });
+  };
+
+  const columns = baseColumns.map((col) => {
+    if (!col.editable) return col;
+
+    return {
+      ...col,
+      onCell: (record: any) => ({
+        record,
+        editable: col.editable,
+        dataIndex: col.dataIndex,
+        title: col.title,
+        handleSave,
+      }),
+    };
+  });
 
   return (
     <>
@@ -122,6 +196,12 @@ export const TranscriptionListTable = ({
       <Table<Transcription.Item>
         rowKey={'id'}
         className={'mt-4'}
+        components={{
+          body: {
+            row: EditableRow,
+            cell: EditableCell,
+          },
+        }}
         pagination={{
           ...pagination,
           totalElements: filteredData.length ?? 0,
@@ -132,36 +212,7 @@ export const TranscriptionListTable = ({
         }}
         rowClickable
         dataSource={filteredData}
-        columns={[
-          {
-            align: 'center',
-            title: 'Наименование файла',
-            dataIndex: 'fileName',
-          },
-
-          {
-            align: 'center',
-            title: 'Код курса',
-            dataIndex: 'code',
-            filters: nameFilters,
-            filteredValue: tableParams.filters?.code || null,
-          },
-
-          {
-            align: 'center',
-            title: 'Выбрать для удаления',
-            key: 'checkboxToDelete',
-            render: (_value, record) => {
-              return (
-                <Checkbox
-                  value={record.id}
-                  checked={selectedRows.includes(record.id)}
-                  onChange={handleClickSelect}
-                />
-              );
-            },
-          },
-        ]}
+        columns={columns}
         onChange={handleTableChange}
       />
     </>

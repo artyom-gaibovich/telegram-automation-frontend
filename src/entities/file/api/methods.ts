@@ -18,7 +18,10 @@ const download = async (fileId: string, params?: { inline?: boolean }) => {
   return data;
 };
 
-const uploadMultiple = async (files: File[], params: { code: string }) => {
+const uploadMultiple = async (
+  files: File[],
+  params: { code: string; seo_tags: string[] },
+) => {
   const formData = new FormData();
 
   files.forEach((file) => {
@@ -26,6 +29,9 @@ const uploadMultiple = async (files: File[], params: { code: string }) => {
   });
 
   formData.append('code', params.code);
+  params.seo_tags.forEach((tag) => {
+    formData.append('seo_tags[]', tag);
+  });
 
   const { data } =
     await ApiService().post<Youtube.Api.UploadMultiple.Response.Data>(

@@ -1,7 +1,7 @@
 .file-upload {
   $border: 1px solid var(--color-border);
   $background: rgba(242, 243, 247, 1);
-  $text: rgba(0, 0, 0, 0.6);
+  $text: rgb(165, 214, 255);
 
   width: 100%;
   max-width: 100%;
@@ -115,7 +115,7 @@
 
     &:hover {
       color: var(--color-primary);
-      background-color: rgb(235, 237, 247);
+      background-color: rgb(211, 211, 211);
     }
 
     & > #filename {

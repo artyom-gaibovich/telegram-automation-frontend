@@ -1,6 +1,6 @@
 import './TranscriptionUploadPage.scss';
 import { useMutation } from '@tanstack/react-query';
-import { Form } from 'antd';
+import { Form, Select } from 'antd';
 import type { UploadFile } from 'antd/lib';
 import { FormikProvider, useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
@@ -16,8 +16,15 @@ const b = bem('create-category-page');
 const TranscriptionUploadPage = () => {
   const navigate = useNavigate();
   const fileUploadMutation = useMutation({
-    mutationFn: ({ files, code }: { files: File[]; code: string }) =>
-      fileApi.uploadMultiple(files, { code }),
+    mutationFn: ({
+      files,
+      code,
+      seo_tags,
+    }: {
+      files: File[];
+      code: string;
+      seo_tags: string[];
+    }) => fileApi.uploadMultiple(files, { code, seo_tags }),
     onSuccess: (data) => {
       console.log('Files uploaded:', data);
     },
@@ -30,19 +37,28 @@ const TranscriptionUploadPage = () => {
     initialValues: {
       code: '',
       files: [] as UploadFile[],
+      seo_tags: [],
     },
     validationSchema: Yup.object({
       code: Yup.string().required('Обязателен'),
       files: Yup.array()
         .min(1, 'Хотя бы один файл должен быть выбран')
         .required('Файлы обязательны'),
+      seo_tags: Yup.array()
+        .of(Yup.string())
+        .min(1, 'Добавьте хотя бы один тег')
+        .required('Теги обязательны'),
     }),
     onSubmit: (values) => {
       const files = values.files
         .map((file) => file.originFileObj)
         .filter((file) => file !== undefined);
 
-      fileUploadMutation.mutate({ files, code: values.code });
+      fileUploadMutation.mutate({
+        files,
+        code: values.code,
+        seo_tags: values.seo_tags,
+      });
     },
   });
 
@@ -76,6 +92,29 @@ const TranscriptionUploadPage = () => {
               {formik.touched.code && formik.errors.code ? (
                 <div>{formik.errors.code}</div>
               ) : null}
+
+              <Form.Item
+                label="Теги темы"
+                validateStatus={
+                  formik.touched.seo_tags && formik.errors.seo_tags
+                    ? 'error'
+                    : ''
+                }
+                help={
+                  formik.touched.seo_tags && formik.errors.seo_tags
+                    ? formik.errors.seo_tags
+                    : ''
+                }
+              >
+                <Select
+                  mode="tags"
+                  placeholder="Введите теги (например: Linux, DevOps)"
+                  value={formik.values.seo_tags}
+                  onChange={(value) => formik.setFieldValue('seo_tags', value)}
+                  onBlur={() => formik.setFieldTouched('seo_tags')}
+                  size="large"
+                ></Select>
+              </Form.Item>
             </div>
             <FormFileUpload
               multiple

@@ -17,15 +17,35 @@ export declare namespace Transcription {
       }
     }
 
+    namespace GeneratePrompt {
+      namespace Request {
+        type Data = {
+          transcriptionId: string;
+          categoryId: string;
+          language: string;
+          topic_tags: string[];
+          audience_level: string;
+          variants: number;
+        };
+      }
+      namespace Response {
+        type Data = {
+          message: string;
+        };
+      }
+    }
+
     namespace Remove {
       namespace Response {
         type Data = Item;
       }
     }
 
-    namespace Find {
+    namespace FindOne {
       namespace Request {}
-      namespace Response {}
+      namespace Response {
+        type Data = Item;
+      }
     }
   }
 }
