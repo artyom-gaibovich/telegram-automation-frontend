@@ -9,6 +9,14 @@ const findAll = async () => {
   return data;
 };
 
+const findOne = async (id: string) => {
+  const { data } =
+    await ApiService().get<Transcription.Api.FindOne.Response.Data>(
+      `/transcription/${id}`,
+    );
+  return data;
+};
+
 const remove = async (id: string) => {
   const { data } =
     await ApiService().delete<Transcription.Api.Remove.Response.Data>(
@@ -17,7 +25,29 @@ const remove = async (id: string) => {
   return data;
 };
 
+const updatePartial = async (
+  id: string,
+  dto: Partial<{ fileName: string; code: string; order: number }>,
+) => {
+  const { data } = await ApiService().patch(`/transcription/${id}`, dto);
+  return data;
+};
+
+const generatePrompt = async (
+  payload: Transcription.Api.GeneratePrompt.Request.Data,
+) => {
+  const { data } =
+    await ApiService().post<Transcription.Api.GeneratePrompt.Response.Data>(
+      `/transcription`,
+      payload,
+    );
+  return data;
+};
+
 export const transcriptionApi = {
   findAll,
   remove,
+  findOne,
+  generatePrompt,
+  updatePartial,
 };

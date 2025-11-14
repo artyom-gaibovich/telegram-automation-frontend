@@ -162,12 +162,13 @@ export const FileUpload: FC<FileUploadProps> = ({
                       width={24}
                       height={24}
                       style={{ color: 'var(--color-primary)' }}
+                      name={'cloudUpload'}
                     />
                     <span id="filename">{file.name}</span>
                   </button>
                   <div className={b('file-item-actions')}>
                     <Icon
-                      name="documentDelete"
+                      name={'cloudUpload'}
                       width={24}
                       height={24}
                       onClick={() => actions.remove(file)}
@@ -186,7 +187,7 @@ export const FileUpload: FC<FileUploadProps> = ({
         >
           {isCompact ? (
             <div className={b('compact-container')}>
-              <Button type="primary" disabled={props?.disabled}>
+              <Button color="primary" disabled={props?.disabled}>
                 {props.multiple ? 'выберите файлы' : 'выберите файл'}
               </Button>
               <p className={b('compact-hint')}>{hintLabel}</p>
@@ -194,14 +195,14 @@ export const FileUpload: FC<FileUploadProps> = ({
           ) : (
             <div className={b('drag-container')}>
               <p className={b('drag-container-text')}>
-                <Icon name={'document'} />
+                <Icon name={'cloudUpload'} />
                 <span>Перетащите сюда файл</span>
               </p>
               <p className={b('drag-container-hint')}>
                 или&nbsp;
                 <Button
-                  color="default"
-                  type="default"
+                  color="primary"
+                  type="dashed"
                   disabled={props?.disabled}
                 >
                   {props.multiple ? 'выберите файлы' : 'выберите файл'}

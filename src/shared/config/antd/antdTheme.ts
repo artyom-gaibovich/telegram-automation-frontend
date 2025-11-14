@@ -12,7 +12,6 @@ export const antdTheme: ThemeConfig = {
 
   components: {
     Select: {
-      activeOutlineColor: 'var(--color-primary)',
       optionActiveBg: 'rgba(from var(--color-blue-1) r g b / 75%)',
       optionSelectedBg: 'var(--color-secondary)',
       optionSelectedColor: 'white',
@@ -21,7 +20,6 @@ export const antdTheme: ThemeConfig = {
     },
     Button: {
       primaryShadow: 'none',
-      defaultHoverColor: 'black',
       defaultShadow: 'none',
       // color=blue
       blue1: 'var(--color-blue-1)',
@@ -46,7 +44,7 @@ export const antdTheme: ThemeConfig = {
       red9: 'var(--color-red-9)',
       red10: 'var(--color-red-10)',
     },
-    Input: { activeShadow: '0 0 0 1px var(--color-primary)' },
+    Input: {},
     DatePicker: {
       activeShadow: '0 0 0 1px var(--color-primary)',
     },

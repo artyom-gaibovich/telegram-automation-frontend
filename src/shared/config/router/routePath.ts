@@ -7,4 +7,5 @@ export enum RoutePath {
   EditCategory = '/category/edit/:id',
   TranscriptionUpload = '/transcription/upload',
   TranscriptionList = '/transcription/list',
+  TranscriptionDetail = '/transcription/:id',
 }
