@@ -17,6 +17,11 @@ export declare namespace Youtube {
     prompt: string;
   }
 
+  export type TranslateResult = {
+    filename: string;
+    result: string;
+  };
+
   namespace Api {
     namespace GetComments {
       namespace Request {
@@ -41,6 +46,23 @@ export declare namespace Youtube {
 
       namespace Response {
         type Data = UploadResult;
+      }
+    }
+
+    export namespace UploadSingle {
+      export namespace Request {
+        export type Params = {
+          code: string;
+          seo_tags?: string[]; // если нужно передавать SEO теги
+        };
+      }
+
+      export namespace Response {
+        export type Data = {
+          file: string;
+          result: TranslateResult[]; // массив результатов перевода
+          message: string; // сообщение от сервера
+        };
       }
     }
 

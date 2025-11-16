@@ -2,10 +2,11 @@ import type { Youtube } from '@entities/youtube/api/types';
 import { ApiService } from '@shared/services';
 
 const getComments = async (body: Youtube.Api.GetComments.Request.Body) => {
-  const { data } = await ApiService().post<Youtube.Api.GetComments.Response.Data>(
-    `/youtube`,
-    body,
-  );
+  const { data } =
+    await ApiService().post<Youtube.Api.GetComments.Response.Data>(
+      `/youtube`,
+      body,
+    );
   return data;
 };
 
@@ -36,10 +37,11 @@ const uploadMultiple = async (
   formData.append('categoryId', params.categoryId);
   formData.append('code', params.code);
 
-  const { data } = await ApiService().post<Youtube.Api.UploadMultiple.Response.Data>(
-    `/youtube/upload-multiple`,
-    formData,
-  );
+  const { data } =
+    await ApiService().post<Youtube.Api.UploadMultiple.Response.Data>(
+      `/youtube/upload-multiple`,
+      formData,
+    );
   return data;
 };
 
