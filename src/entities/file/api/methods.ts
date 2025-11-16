@@ -44,6 +44,58 @@ const uploadMultiple = async (
   return data;
 };
 
+const uploadSingle = async (
+  file: File,
+  params: Youtube.Api.UploadSingle.Request.Params,
+) => {
+  const formData = new FormData();
+  formData.append('file', file, file.name);
+  formData.append('categoryId', params.categoryId);
+  formData.append('code', params.code);
+
+  if (params.seo_tags) {
+    params.seo_tags.forEach((tag) => formData.append('seo_tags[]', tag));
+  }
+
+  const { data } =
+    await ApiService().post<Youtube.Api.UploadSingle.Response.Data>(
+      `/youtube/upload-single`,
+      formData,
+    );
+
+  return data;
+};
+
+const uploadMultipleViaSingle = async (
+  files: File[],
+  params: Youtube.Api.UploadSingle.Request.Params,
+) => {
+  const uploadPromises = files.map((file) => {
+    const formData = new FormData();
+    formData.append('file', file, file.name);
+    formData.append('categoryId', params.categoryId);
+    formData.append('code', params.code);
+
+    if (params.seo_tags) {
+      params.seo_tags.forEach((tag) => formData.append('seo_tags[]', tag));
+    }
+
+    return ApiService()
+      .post<Youtube.Api.UploadSingle.Response.Data>(
+        `/youtube/upload-single`,
+        formData,
+      )
+      .then((res) => res.data);
+  });
+
+  const results = await Promise.all(uploadPromises);
+
+  return {
+    message: 'Все файлы обработаны',
+    results, // массив объектов { file, result, message }
+  };
+};
+
 // todo: кэширование
 const getInfo = async (fileId: string) => {
   const { data } = await ApiService().get<FileStorage.ItemInfo>(
@@ -54,6 +106,8 @@ const getInfo = async (fileId: string) => {
 
 export const fileApi = {
   upload,
+  uploadSingle,
+  uploadMultipleViaSingle,
   uploadMultiple,
   download,
   getInfo,
