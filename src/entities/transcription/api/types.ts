@@ -5,6 +5,7 @@ export declare namespace Transcription {
     code: string;
     content: string;
     order: number;
+    section: string;
   }
 
   namespace Api {
@@ -46,6 +47,13 @@ export declare namespace Transcription {
       namespace Response {
         type Data = Item;
       }
+    }
+
+    namespace UpdatePartial {
+      namespace Request {
+        type Data = Partial<Item>;
+      }
+      namespace Response {}
     }
   }
 }

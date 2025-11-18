@@ -32,7 +32,7 @@ const EditableCell = ({
 
   const toggleEdit = () => {
     setEditing(!editing);
-    form.setFieldsValue({ [dataIndex]: record[dataIndex] });
+    form.setFieldsValue({ [dataIndex]: record[dataIndex] ?? '' });
   };
 
   const save = async () => {
@@ -54,7 +54,16 @@ const EditableCell = ({
         name={dataIndex}
         rules={[{ required: true, message: 'Введите значение' }]}
       >
-        <Input ref={inputRef} onPressEnter={save} onBlur={save} type="number" />
+        {dataIndex === 'order' ? (
+          <Input
+            ref={inputRef}
+            onPressEnter={save}
+            onBlur={save}
+            type="number"
+          />
+        ) : (
+          <Input ref={inputRef} onPressEnter={save} onBlur={save} />
+        )}
       </Form.Item>
     ) : (
       <div style={{ paddingRight: 24, cursor: 'pointer' }} onClick={toggleEdit}>

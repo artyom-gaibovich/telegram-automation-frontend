@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { type Dispatch, type SetStateAction, useMemo, useState } from 'react';
 import { useMutation, type UseQueryResult } from '@tanstack/react-query';
 import { type CheckboxChangeEvent, Row } from 'antd';
 import type { FilterValue } from 'antd/es/table/interface';
@@ -17,7 +17,7 @@ interface Props {
   query: UseQueryResult<Transcription.Api.FindAll.Response.Data>;
   pagination: IUsePagination['pagination'];
   onChangePagination: IUsePagination['onChangePagination'];
-  queryRefetch: React.Dispatch<React.SetStateAction<number>>;
+  queryRefetch: Dispatch<SetStateAction<number>>;
 }
 
 interface TableParams {
@@ -49,8 +49,16 @@ export const TranscriptionListTable = ({
   });
 
   const updateOrderMutation = useMutation({
-    mutationFn: async ({ id, order }: { id: string; order: number }) => {
-      return transcriptionApi.updatePartial(id, { order });
+    mutationFn: async ({
+      id,
+      order,
+      section,
+    }: {
+      id: string;
+      order: number;
+      section: string;
+    }) => {
+      return transcriptionApi.updatePartial(id, { order, section });
     },
 
     onSuccess: () => query.refetch(),
@@ -118,6 +126,13 @@ export const TranscriptionListTable = ({
     },
     {
       align: 'center',
+      title: 'Раздел курса',
+      dataIndex: 'section',
+      render: (value: any) => value ?? 'Не заполнено',
+      editable: true,
+    },
+    {
+      align: 'center',
       title: 'Порядок',
       dataIndex: 'order',
       editable: true,
@@ -154,6 +169,7 @@ export const TranscriptionListTable = ({
     updateOrderMutation.mutate({
       id: row.id,
       order: Number(row.order),
+      section: row.section,
     });
   };
 

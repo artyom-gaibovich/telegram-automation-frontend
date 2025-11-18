@@ -8,4 +8,9 @@ export enum RoutePath {
   TranscriptionUpload = '/transcription/upload',
   TranscriptionList = '/transcription/list',
   TranscriptionDetail = '/transcription/:id',
+
+  ScenarioDetail = '/scenario/:id',
+  ScenarioList = '/scenario',
+  ScenarioCreate = '/scenario/create',
+  ScenarioEdit = '/scenario/:id/edit',
 }
