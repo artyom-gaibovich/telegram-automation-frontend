@@ -4,6 +4,10 @@ import CreateCategoryPage from '@pages/create-category/CreateCategoryPage';
 import EditCategoryPage from '@pages/edit-category/EditCategoryPage';
 import LoginPage from '@pages/login/LoginPage';
 import MainPage from '@pages/main/MainPage';
+import { ScenarioCreatePage } from '@pages/scenario-create/ScenarioCreatePage';
+import { ScenarioDetailPage } from '@pages/scenario-detail/ScenarioPage';
+import { ScenarioEditPage } from '@pages/scenario-edit/ScenarioEditPage';
+import ScenarioListPage from '@pages/scenario-list/ScenarioListPage';
 import TranscriptionDetailPage from '@pages/transcription-detail/TranscriptionDetailPage';
 import TranscriptionListPage from '@pages/transcription-list/TranscriptionListPage';
 import TranscriptionUploadPage from '@pages/transcription-upload/TranscriptionUploadPage';
@@ -42,6 +46,24 @@ export const routeConfig: ReadonlyArray<RouteProps> = [
     path: RoutePath.TranscriptionDetail,
     Component: TranscriptionDetailPage,
   },
+
+  {
+    path: RoutePath.ScenarioDetail,
+    Component: ScenarioDetailPage,
+  },
+  {
+    path: RoutePath.ScenarioList,
+    Component: ScenarioListPage,
+  },
+  {
+    path: RoutePath.ScenarioEdit,
+    Component: ScenarioEditPage,
+  },
+  {
+    path: RoutePath.ScenarioCreate,
+    Component: ScenarioCreatePage,
+  },
+
   {
     path: RoutePath.FormConstructor,
     Component: () => <div>Конструктор форм</div>,

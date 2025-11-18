@@ -27,7 +27,7 @@ const remove = async (id: string) => {
 
 const updatePartial = async (
   id: string,
-  dto: Partial<{ fileName: string; code: string; order: number }>,
+  dto: Transcription.Api.UpdatePartial.Request.Data,
 ) => {
   const { data } = await ApiService().patch(`/transcription/${id}`, dto);
   return data;

@@ -1,0 +1,37 @@
+.code-block {
+  &__syntax-highlighter {
+    pre[class*="language-"] {
+      background: #18202A;
+      border-radius: 12px;
+      padding: 36px;
+      font-size: 0.9rem;
+    }
+
+    .token {
+      &.string {
+        color: #A5D6FF;
+      }
+
+      &.function {
+        color: #FFFFFF;
+      }
+
+      &.number {
+        color: #A5D6FF;
+      }
+
+      &.operator {
+        color: #FFFFFF;
+      }
+
+      &.comment {
+        color: #777777;
+        font-style: italic;
+      }
+
+      &.punctuation {
+        color: #FFFFFF;
+      }
+    }
+  }
+}

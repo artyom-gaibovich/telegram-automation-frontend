@@ -1,0 +1,35 @@
+.scenario-page {
+
+  &__title {
+    color: #D33C44;
+    margin-bottom: 24px;
+  }
+
+  &__button {
+    background-color: #D33C44;
+    border-color: #D33C44;
+
+    &:hover {
+      background-color: #b22d33 !important;
+      border-color: #b22d33 !important;
+    }
+  }
+
+  &__card {
+    background-color: #18202A;
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 24px;
+    margin-top: 16px;
+  }
+
+  &__markdown-p {
+    margin-bottom: 28px;
+  }
+
+  &__markdown-h2 {
+    color: #A5D6FF;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+}
