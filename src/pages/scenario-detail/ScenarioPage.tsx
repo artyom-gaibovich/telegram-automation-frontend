@@ -5,11 +5,14 @@ import ReactMarkdown from 'react-markdown';
 import { useNavigate, useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 import { useScenarioDetail } from '@entities/scenario';
+import type { Status } from '@entities/scenario/api/code-types';
 import { CodeBlock } from '@pages/scenario-detail/ui/CodeBlock';
 import { RoutePath } from '@shared/config/router';
+import { ScenarioStatusEnum } from '@shared/enums';
 import { bem, useAntdApp } from '@shared/libs';
 import './ScenarioPage.scss';
 import { ArrowLeftOutlined } from '@ant-design/icons';
+import { createScenarioStatusOptionList } from '@shared/models/selectOptionItem';
 
 const b = bem('scenario-page');
 
@@ -20,6 +23,7 @@ interface ScenarioFormValues {
   code: string;
   section: string;
   order: number;
+  status: Status;
   tags: string[];
 }
 
@@ -29,6 +33,9 @@ const validationSchema = Yup.object({
   order: Yup.number().required('Введите порядок'),
   tags: Yup.array().of(Yup.string()).required('Добавьте хотя бы один тег'),
   content: Yup.string().required('Введите контент сценария'),
+  status: Yup.string()
+    .oneOf(Object.values(ScenarioStatusEnum) as Status[])
+    .required('Выберите статус'),
 });
 
 export const ScenarioDetailPage: React.FC = () => {
@@ -44,6 +51,7 @@ export const ScenarioDetailPage: React.FC = () => {
       section: data?.section ?? '',
       order: data?.order ?? 0,
       tags: data?.tags ?? [],
+      status: data?.status ?? ScenarioStatusEnum.ON_DRAFT,
     },
     enableReinitialize: true,
     validationSchema,
@@ -56,6 +64,10 @@ export const ScenarioDetailPage: React.FC = () => {
       }
     },
   });
+
+  const statusOptions = createScenarioStatusOptionList(
+    Object.values(ScenarioStatusEnum),
+  );
 
   return (
     <div style={{ padding: '1px', maxWidth: 1200, margin: '0 auto' }}>
@@ -101,6 +113,26 @@ export const ScenarioDetailPage: React.FC = () => {
                     name="section"
                     value={formik.values.section}
                     onChange={formik.handleChange}
+                  />
+                </Form.Item>
+
+                <Form.Item
+                  label="Статус"
+                  validateStatus={
+                    formik.touched.status && formik.errors.status ? 'error' : ''
+                  }
+                  help={
+                    formik.touched.status && formik.errors.status
+                      ? formik.errors.status
+                      : ''
+                  }
+                >
+                  <Select
+                    value={formik.values.status}
+                    onChange={(value) => formik.setFieldValue('status', value)}
+                    onBlur={() => formik.setFieldTouched('status')}
+                    options={statusOptions}
+                    placeholder="Выберите статус"
                   />
                 </Form.Item>
 

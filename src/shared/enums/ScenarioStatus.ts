@@ -1,0 +1,7 @@
+export enum ScenarioStatusEnum {
+  ON_DRAFT = 'ON_DRAFT',
+  ON_WROK = 'ON_WROK',
+  ON_PUBLISHED = 'ON_PUBLISHED',
+  ON_VIDEO_EDITING = 'ON_VIDEO_EDITING',
+  ON_VIDEO_SCRIPT = 'ON_VIDEO_SCRIPT',
+}

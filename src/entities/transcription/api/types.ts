@@ -6,6 +6,7 @@ export declare namespace Transcription {
     content: string;
     order: number;
     section: string;
+    createdAt: string;
   }
 
   namespace Api {

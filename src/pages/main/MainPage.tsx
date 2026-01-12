@@ -12,3 +12,5 @@ const MainPage = () => {
 };
 
 export default MainPage;
+
+// status) черновик, в работе, опубликован

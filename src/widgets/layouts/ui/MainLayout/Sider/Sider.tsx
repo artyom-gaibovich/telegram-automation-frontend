@@ -28,8 +28,6 @@ export const Sider = () => {
     return () => window.removeEventListener('resize', handler);
   }, []);
 
-  //  "/scenario/edf7bce9-d8b3-4818-9556-27cd6fa9e373"
-  debugger;
   const isSiderHide = [
     RoutePath.ScenarioDetail.replace(':id', location.pathname.split('/')[2]),
   ].includes(location.pathname);
@@ -37,7 +35,6 @@ export const Sider = () => {
 
   return (
     <>
-      {/* BURGER BUTTON - VISIBLE ON MOBILE */}
       {isMobile && (
         <button className={b('burger-btn')} onClick={toggleIsOpen}>
           <span />
@@ -46,7 +43,6 @@ export const Sider = () => {
         </button>
       )}
 
-      {/* SIDEBAR */}
       <aside className={b({ open: isOpen, mobile: isMobile })}>
         <ul>
           {SIDE_MENU_ITEMS.map((i) => (
@@ -68,7 +64,7 @@ export const Sider = () => {
               className={b('toggle-button', { open: isOpen })}
               onClick={toggleIsOpen}
             >
-              <Icon color={'var(--color-blue-6)'} />
+              <Icon color={'var(--color-blue-6)'} name={'document'} />
             </button>
           )}
         </div>

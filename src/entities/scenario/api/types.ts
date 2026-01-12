@@ -1,3 +1,5 @@
+import type { Status } from '@entities/scenario/api/code-types';
+
 export declare namespace Scenario {
   export interface Item {
     id: string;
@@ -5,6 +7,7 @@ export declare namespace Scenario {
     code: string | null;
     section: string | null;
     createdAt: string;
+    status: Status;
     order: number | null;
     tags: string[];
   }
@@ -56,6 +59,7 @@ export declare namespace Scenario {
           content: string;
           code: string;
           section: string;
+          status: Status;
           order: number;
           tags: string[];
         }>;

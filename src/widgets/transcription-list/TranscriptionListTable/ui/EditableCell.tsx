@@ -1,9 +1,8 @@
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
-import { Form, Input } from 'antd';
-
+import { Form, Input, Select } from 'antd';
 const EditableContext = createContext<any>(null);
 
-const EditableRow = ({ index, ...props }: any) => {
+export const EditableRow = ({ index, ...props }: any) => {
   const [form] = Form.useForm();
   return (
     <Form form={form} component={false}>
@@ -14,12 +13,14 @@ const EditableRow = ({ index, ...props }: any) => {
   );
 };
 
-const EditableCell = ({
+export const EditableCell = ({
   editable,
   children,
   dataIndex,
   record,
   handleSave,
+  inputType = 'text', // добавляем проп для типа input
+  inputProps = {}, // добавляем проп для дополнительных свойств
   ...restProps
 }: any) => {
   const [editing, setEditing] = useState(false);
@@ -27,7 +28,7 @@ const EditableCell = ({
   const inputRef = useRef<any>(null);
 
   useEffect(() => {
-    if (editing) inputRef.current?.focus();
+    if (editing) inputRef.current?.focus?.();
   }, [editing]);
 
   const toggleEdit = () => {
@@ -54,7 +55,14 @@ const EditableCell = ({
         name={dataIndex}
         rules={[{ required: true, message: 'Введите значение' }]}
       >
-        {dataIndex === 'order' ? (
+        {inputType === 'select' ? (
+          <Select
+            ref={inputRef}
+            onBlur={save}
+            onPressEnter={save}
+            {...inputProps}
+          />
+        ) : dataIndex === 'order' ? (
           <Input
             ref={inputRef}
             onPressEnter={save}
@@ -74,5 +82,3 @@ const EditableCell = ({
 
   return <td {...restProps}>{childNode}</td>;
 };
-
-export { EditableCell, EditableRow };

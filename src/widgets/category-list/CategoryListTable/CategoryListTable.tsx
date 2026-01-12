@@ -115,6 +115,7 @@ export const CategoryListTable = ({ query, pagination }: Props) => {
       <Table<Category.Item>
         rowKey={'id'}
         className={'mt-4'}
+        //@ts-ignore
         pagination={pagination}
         rowClickable
         dataSource={filteredData}

@@ -1,6 +1,6 @@
 import type { FC } from 'react';
+import type { InputProps } from 'antd';
 import { useField } from 'formik';
-import type { InputProps } from '@shared/ui';
 import { Input } from '@shared/ui';
 import { FormItem } from '@shared/ui/form-controls';
 import type { BaseFormControlProps } from '@shared/ui/form-controls/types';

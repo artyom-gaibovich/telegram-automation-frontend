@@ -6,7 +6,10 @@ import { FormikProvider, useFormik } from 'formik';
 import { useNavigate, useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 import { type Category, categoryApi } from '@entities/category';
-import { editCategoryForm } from '@pages/edit-category/model/editCategoryForm';
+import {
+  editCategoryForm,
+  type EditCategoryFormValues,
+} from '@pages/edit-category/model/editCategoryForm';
 import { RoutePath } from '@shared/config/router';
 import { bem } from '@shared/libs';
 import { Button, Input } from '@shared/ui';
@@ -67,10 +70,11 @@ const EditCategoryPage = () => {
     onDataLoaded(query.data);
   }, [query.data]);
 
-  const formik = useFormik({
+  const formik = useFormik<EditCategoryFormValues>({
     initialValues: {
       prompt: '',
       name: '',
+      id: undefined,
     },
     validationSchema: Yup.object({
       prompt: Yup.string().required('Обязателен'),

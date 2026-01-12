@@ -1,4 +1,10 @@
-import { type Dispatch, type SetStateAction, useMemo, useState } from 'react';
+import {
+  type Dispatch,
+  type SetStateAction,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { useMutation, type UseQueryResult } from '@tanstack/react-query';
 import { type CheckboxChangeEvent, Row } from 'antd';
 import type { FilterValue } from 'antd/es/table/interface';
@@ -6,6 +12,8 @@ import { useNavigate } from 'react-router-dom';
 import { type Transcription, transcriptionApi } from '@entities/transcription';
 import { RoutePath } from '@shared/config/router';
 import type { IUsePagination } from '@shared/libs';
+import { loadFiltersFromStorage, saveFiltersToStorage } from '@shared/services';
+import { TranscriptionTableFilters } from '@shared/services/LocalStorageService';
 import { Button, Checkbox } from '@shared/ui';
 import { Table } from '@shared/ui/Table/Table';
 import {
@@ -22,6 +30,10 @@ interface Props {
 
 interface TableParams {
   filters?: Record<string, FilterValue | null>;
+  sort?: {
+    field?: string;
+    order?: 'ascend' | 'descend';
+  };
 }
 
 export const TranscriptionListTable = ({
@@ -30,7 +42,9 @@ export const TranscriptionListTable = ({
   onChangePagination,
   queryRefetch,
 }: Props) => {
-  const [tableParams, setTableParams] = useState<TableParams>({});
+  const [tableParams, setTableParams] = useState<TableParams>(() =>
+    loadFiltersFromStorage(TranscriptionTableFilters),
+  );
   const [selectedRows, setSelectedRows] = useState<string[]>([]);
   const navigate = useNavigate();
 
@@ -47,6 +61,10 @@ export const TranscriptionListTable = ({
       console.error(err);
     },
   });
+
+  useEffect(() => {
+    saveFiltersToStorage(tableParams, TranscriptionTableFilters);
+  }, [tableParams]);
 
   const updateOrderMutation = useMutation({
     mutationFn: async ({
@@ -82,14 +100,32 @@ export const TranscriptionListTable = ({
       );
     }
 
+    if (!tableParams.sort) {
+      data.sort((a, b) => {
+        const dateA = new Date(a.createdAt).getTime();
+        const dateB = new Date(b.createdAt).getTime();
+        return dateB - dateA;
+      });
+    }
+
     return data;
-  }, [query.data, tableParams.filters]);
+  }, [query.data, tableParams.filters, tableParams.sort]);
 
   const handleTableChange = (
-    _: unknown,
+    pagination: any,
     filters: Record<string, FilterValue | null>,
+    sorter: any,
   ) => {
-    setTableParams({ filters });
+    setTableParams({
+      filters,
+      sort:
+        sorter.field && sorter.order
+          ? {
+              field: sorter.field,
+              order: sorter.order,
+            }
+          : undefined,
+    });
   };
 
   const handleClickCreate = () => {
@@ -150,6 +186,30 @@ export const TranscriptionListTable = ({
           />
         );
       },
+    },
+    {
+      align: 'center',
+      title: 'Дата создания',
+      dataIndex: 'createdAt',
+      key: 'createdAt',
+      render: (value: string) => {
+        if (!value) return 'Нет данных';
+        return new Date(value).toLocaleDateString('ru-RU', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+        });
+      },
+      sorter: (a: any, b: any) => {
+        const dateA = new Date(a.createdAt).getTime();
+        const dateB = new Date(b.createdAt).getTime();
+        return dateA - dateB;
+      },
+      sortOrder:
+        tableParams.sort?.field === 'createdAt' ? tableParams.sort.order : null,
+      defaultSortOrder: 'descend',
     },
   ];
 

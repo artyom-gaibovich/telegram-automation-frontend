@@ -1,5 +1,6 @@
 import type { Category } from '@entities/category';
 import { Yup } from '@shared/libs';
+import type { FormModel } from '@shared/models';
 
 export interface EditCategoryFormValues {
   id: string | undefined;

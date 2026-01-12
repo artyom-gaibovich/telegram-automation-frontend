@@ -1,7 +1,6 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Row } from 'antd';
-import { useNavigate } from 'react-router-dom';
 import { scenarioApi } from '@entities/scenario';
 import { usePagination } from '@shared/libs';
 import { ScenarioListTable } from './ScenarioListTable';

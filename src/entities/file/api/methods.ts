@@ -50,7 +50,7 @@ const uploadSingle = async (
 ) => {
   const formData = new FormData();
   formData.append('file', file, file.name);
-  formData.append('categoryId', params.categoryId);
+  /*formData.append('categoryId', params.categoryId);*/
   formData.append('code', params.code);
 
   if (params.seo_tags) {
@@ -73,7 +73,7 @@ const uploadMultipleViaSingle = async (
   const uploadPromises = files.map((file) => {
     const formData = new FormData();
     formData.append('file', file, file.name);
-    formData.append('categoryId', params.categoryId);
+    /*   formData.append('categoryId', params.categoryId);*/
     formData.append('code', params.code);
 
     if (params.seo_tags) {
