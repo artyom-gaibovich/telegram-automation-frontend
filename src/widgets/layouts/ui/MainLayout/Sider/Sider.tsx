@@ -12,6 +12,8 @@ const SIDE_MENU_ITEMS = [
   { key: RoutePath.CategoryList, label: `Список категорий` },
   { key: RoutePath.TranscriptionList, label: `Список транскрипций` },
   { key: RoutePath.ScenarioList, label: `Список сценариев` },
+
+  { key: RoutePath.UserChannelList, label: `Список каналов` },
 ];
 
 export const Sider = () => {

@@ -11,6 +11,10 @@ import ScenarioListPage from '@pages/scenario-list/ScenarioListPage';
 import TranscriptionDetailPage from '@pages/transcription-detail/TranscriptionDetailPage';
 import TranscriptionListPage from '@pages/transcription-list/TranscriptionListPage';
 import TranscriptionUploadPage from '@pages/transcription-upload/TranscriptionUploadPage';
+import { UserChannelCreatePage } from '@pages/user-channel-create/UserChannelCreatePage';
+import { UserChannelDetailPage } from '@pages/user-channel-detail/UserChannelDetailPage';
+import { UserChannelEditPage } from '@pages/user-channel-edit/UserChannelEditPage';
+import { UserChannelsListPage } from '@pages/user-channel-list/UserChannelsListPage';
 import { RoutePath } from './routePath';
 
 export const routeConfig: ReadonlyArray<RouteProps> = [
@@ -62,6 +66,26 @@ export const routeConfig: ReadonlyArray<RouteProps> = [
   {
     path: RoutePath.ScenarioCreate,
     Component: ScenarioCreatePage,
+  },
+
+  {
+    path: RoutePath.UserChannelDetail,
+    Component: UserChannelDetailPage,
+  },
+
+  {
+    path: RoutePath.UserChannelEdit,
+    Component: UserChannelEditPage,
+  },
+
+  {
+    path: RoutePath.UserChannelList,
+    Component: UserChannelsListPage,
+  },
+
+  {
+    path: RoutePath.UserChannelCreate,
+    Component: UserChannelCreatePage,
   },
 
   {

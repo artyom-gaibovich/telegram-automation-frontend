@@ -13,4 +13,9 @@ export enum RoutePath {
   ScenarioList = '/scenario',
   ScenarioCreate = '/scenario/create',
   ScenarioEdit = '/scenario/:id/edit',
+
+  UserChannelList = '/user-channels',
+  UserChannelCreate = '/user-channels/create',
+  UserChannelDetail = '/user-channels/:id',
+  UserChannelEdit = '/user-channels/:id/edit',
 }

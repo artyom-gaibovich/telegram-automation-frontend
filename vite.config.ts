@@ -24,6 +24,12 @@ export default defineConfig(({ mode }) => {
     server: {
       port: 5174,
       host: true,
+      allowedHosts: [
+        'localhost',
+        '127.0.0.1',
+        '127.0.0.1',
+        'tonelessly-allied-chimaera.cloudpub.ru',
+      ],
       proxy: {
         '/api': {
           target: 'http://localhost:3002',

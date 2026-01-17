@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { userChannelApi } from '../api/methods';
 import type { UserChannel } from '../api/types';
 
-const USER_ID = 'USER_ID_1';
+const USER_ID = '00000000-0000-0000-0000-000000000000';
 
 export const useUserChannelsList = () => {
   return useQuery({
