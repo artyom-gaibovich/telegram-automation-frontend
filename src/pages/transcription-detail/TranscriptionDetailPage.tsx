@@ -37,10 +37,7 @@ interface PromptFormValues {
 
 const validationSchema = Yup.object({
   categoryId: Yup.string().required('Выберите категорию'),
-  topic_tags: Yup.array()
-    .of(Yup.string())
-    .min(1, 'Добавьте хотя бы один тег')
-    .required('Теги обязательны'),
+  topic_tags: Yup.array().of(Yup.string()),
   audience_level: Yup.string().required('Выберите уровень аудитории'),
   variants: Yup.number()
     .min(1, 'Минимум 1 вариант')

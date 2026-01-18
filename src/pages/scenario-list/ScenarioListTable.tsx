@@ -13,8 +13,11 @@ import {
   createScenarioStatusOptionList,
   SCENARIO_STATUS_LABELS,
 } from '@shared/models/selectOptionItem';
-import { loadFiltersFromStorage, saveFiltersToStorage } from '@shared/services';
-import { ScenarioTableParams } from '@shared/services/LocalStorageService';
+import {
+  loadFiltersFromStorage,
+  LocalStorageKeys,
+  saveFiltersToStorage,
+} from '@shared/services';
 import { Button } from '@shared/ui';
 import { Table } from '@shared/ui/Table/Table';
 import {
@@ -45,7 +48,7 @@ export const ScenarioListTable = ({
 
   const [selectedRows, setSelectedRows] = useState<string[]>([]);
   const [tableParams, setTableParams] = useState<TableParams>(() =>
-    loadFiltersFromStorage(ScenarioTableParams),
+    loadFiltersFromStorage(LocalStorageKeys.ScenarioTableParams),
   );
 
   const deleteMutation = useMutation({
@@ -55,7 +58,7 @@ export const ScenarioListTable = ({
   });
 
   useEffect(() => {
-    saveFiltersToStorage(tableParams, ScenarioTableParams);
+    saveFiltersToStorage(tableParams, LocalStorageKeys.ScenarioTableParams);
   }, [tableParams]);
 
   const updateMutation = useMutation({

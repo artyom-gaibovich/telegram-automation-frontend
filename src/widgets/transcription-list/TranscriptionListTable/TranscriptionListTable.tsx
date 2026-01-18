@@ -12,8 +12,11 @@ import { useNavigate } from 'react-router-dom';
 import { type Transcription, transcriptionApi } from '@entities/transcription';
 import { RoutePath } from '@shared/config/router';
 import type { IUsePagination } from '@shared/libs';
-import { loadFiltersFromStorage, saveFiltersToStorage } from '@shared/services';
-import { TranscriptionTableFilters } from '@shared/services/LocalStorageService';
+import {
+  loadFiltersFromStorage,
+  LocalStorageKeys,
+  saveFiltersToStorage,
+} from '@shared/services';
 import { Button, Checkbox } from '@shared/ui';
 import { Table } from '@shared/ui/Table/Table';
 import {
@@ -43,7 +46,7 @@ export const TranscriptionListTable = ({
   queryRefetch,
 }: Props) => {
   const [tableParams, setTableParams] = useState<TableParams>(() =>
-    loadFiltersFromStorage(TranscriptionTableFilters),
+    loadFiltersFromStorage(LocalStorageKeys.TranscriptionTableFilters),
   );
   const [selectedRows, setSelectedRows] = useState<string[]>([]);
   const navigate = useNavigate();
@@ -63,7 +66,7 @@ export const TranscriptionListTable = ({
   });
 
   useEffect(() => {
-    saveFiltersToStorage(tableParams, TranscriptionTableFilters);
+    saveFiltersToStorage(tableParams, LocalStorageKeys.TranscriptionTableFilters);
   }, [tableParams]);
 
   const updateOrderMutation = useMutation({
@@ -112,7 +115,7 @@ export const TranscriptionListTable = ({
   }, [query.data, tableParams.filters, tableParams.sort]);
 
   const handleTableChange = (
-    pagination: any,
+    _pagination: any,
     filters: Record<string, FilterValue | null>,
     sorter: any,
   ) => {
