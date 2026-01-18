@@ -7,27 +7,28 @@ interface TableParams {
 export enum LocalStorageKeys {
   TranscriptionTableFilters = 'transcription_table_filters',
   ScenarioTableParams = 'scenario_table_params',
+  TranscriptionDetailForm = 'transcription_detail_form',
 }
 
-export const loadFiltersFromStorage = (
+export const loadFiltersFromStorage = <T = TableParams>(
   storageKey: LocalStorageKeys,
-): TableParams => {
+): T => {
   try {
     const stored = localStorage.getItem(storageKey);
     if (stored) {
       const parsed = JSON.parse(stored);
       if (parsed && typeof parsed === 'object') {
-        return parsed;
+        return parsed as T;
       }
     }
   } catch (error) {
     console.error('Ошибка при загрузке фильтров из localStorage:', error);
   }
-  return {};
+  return {} as T;
 };
 
-export const saveFiltersToStorage = (
-  filters: TableParams,
+export const saveFiltersToStorage = <T = TableParams>(
+  filters: T,
   storageKey: LocalStorageKeys,
 ) => {
   try {

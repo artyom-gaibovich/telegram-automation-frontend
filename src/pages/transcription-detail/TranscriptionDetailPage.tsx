@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ArrowLeftOutlined,
   CopyOutlined,
@@ -23,6 +23,11 @@ import {
   useTranscriptionDetail,
 } from '@entities/transcription';
 import { RoutePath } from '@shared/config/router';
+import {
+  loadFiltersFromStorage,
+  LocalStorageKeys,
+  saveFiltersToStorage,
+} from '@shared/services';
 
 const { Title } = Typography;
 
@@ -59,12 +64,18 @@ const TranscriptionDetailPage: React.FC = () => {
     name: el.name,
   }));
 
+  // Загружаем сохраненные значения из localStorage
+  const savedFormData = loadFiltersFromStorage<{
+    categoryId?: string;
+    topic_tags?: string[];
+  }>(LocalStorageKeys.TranscriptionDetailForm);
+
   const formik = useFormik<PromptFormValues>({
     initialValues: {
       transcriptionId: id || '',
-      categoryId: '',
+      categoryId: savedFormData.categoryId || '',
       language: 'ru',
-      topic_tags: [],
+      topic_tags: savedFormData.topic_tags || [],
       audience_level: 'beginner',
       variants: 1,
     },
@@ -75,13 +86,22 @@ const TranscriptionDetailPage: React.FC = () => {
         const response = await transcriptionApi.generatePrompt(values);
         setPromptResponse(response.message);
         message.success('Промпт успешно получен!');
-      } catch (error) {
+      } catch {
         message.error('Ошибка при получении промпта');
       } finally {
         setLoading(false);
       }
     },
   });
+
+  // Сохраняем categoryId и topic_tags в localStorage при изменении
+  useEffect(() => {
+    const formDataToSave = {
+      categoryId: formik.values.categoryId,
+      topic_tags: formik.values.topic_tags,
+    };
+    saveFiltersToStorage(formDataToSave, LocalStorageKeys.TranscriptionDetailForm);
+  }, [formik.values.categoryId, formik.values.topic_tags]);
 
   const handleCopyPrompt = () => {
     if (promptResponse) {
