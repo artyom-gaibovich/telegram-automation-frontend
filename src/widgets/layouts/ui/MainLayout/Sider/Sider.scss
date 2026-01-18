@@ -1,100 +1,10 @@
 .sider {
-  --sider-width: 200px;
-
-  grid-area: sider;
-  background: var(--bg-color);
-  width: var(--sider-width);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: width 200ms ease-in-out, transform 250ms ease;
-  box-shadow: 1px 5px 15px rgba(121, 121, 121, 0.4);
-  z-index: 200;
-  position: relative;
-
-  /* --- Desktop collapsed --- */
-  &:not(.sider_open):not(.sider_mobile) {
-    width: 56px;
-    box-shadow: none;
-
-    & > ul {
-      opacity: 0;
-      pointer-events: none;
-    }
-  }
-
-  /* --- MOBILE MODE: Drawer --- */
-  &.sider_mobile {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-
-    transform: translateX(-100%);
-    &.sider_open {
-      transform: translateX(0);
-    }
-  }
-
-  /* MENU LIST */
-  & > ul {
-    margin: 0;
-    margin-top: 30px;
-    padding: 0;
-    list-style: none;
-    opacity: 1;
-    transition: opacity 200ms ease-in-out;
-
-    & > li {
-      margin-top: 12px;
-
-      & > a {
-        display: block;
-        width: calc(100% - 16px);
-        margin: 4px 8px;
-        padding: 4px 4px 4px 12px;
-        border-radius: 8px;
-        color: var(--text-primary);
-        transition: background-color 200ms ease;
-
-        &:hover {
-          background: rgba(from var(--color-blue-1) r g b / 50%);
-        }
-
-        &.active {
-          background: rgba(from var(--color-blue-1) r g b / 50%);
-        }
-      }
-    }
-  }
-
-  /* DESKTOP TOGGLE BUTTON */
-  &__toggle-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    border-radius: 50%;
-    height: 32px;
-    width: 32px;
-
-    &:hover {
-      background-color: var(--color-primary);
-      & path {
-        fill: white;
-      }
-    }
-  }
-
   /* MOBILE BURGER BUTTON */
   &__burger-btn {
     position: fixed;
     top: 12px;
     left: 12px;
-    z-index: 300;
+    z-index: 1000;
     width: 32px;
     height: 28px;
     padding: 0;
@@ -112,20 +22,9 @@
       border-radius: 3px;
       transition: 0.25s;
     }
-  }
 
-  /* BACKDROP */
-  &__backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.45);
-    z-index: 150;
-  }
-}
-
-/* --- HIDE DEFAULT SIDEBAR ON MOBILE IF CLOSED --- */
-@media (max-width: 768px) {
-  .sider:not(.sider_open) {
-    transform: translateX(-100%);
+    &:hover span {
+      background: var(--color-primary);
+    }
   }
 }

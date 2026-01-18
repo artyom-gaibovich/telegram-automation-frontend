@@ -1,15 +1,16 @@
 .main-layout {
-  display: grid;
-  grid-template-areas:
-    'header header'
-    'sider content';
-  grid-template-rows: auto 1fr;
-  grid-template-columns: auto 1fr;
-  min-height: 100vh;
-
   &__content {
-    grid-area: content;
     color: var(--text-primary);
     padding: 32px 48px;
+    background: var(--bg-color);
+  }
+}
+
+@media (max-width: 768px) {
+  .main-layout {
+    &__content {
+      padding: 24px 16px;
+      padding-top: 64px;
+    }
   }
 }

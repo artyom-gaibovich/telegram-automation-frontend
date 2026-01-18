@@ -1,5 +1,6 @@
 import './MainLayout.scss';
 import type { ReactNode } from 'react';
+import { Layout } from 'antd';
 import { bem } from '@shared/libs';
 import { Sider } from '@widgets/layouts/ui/MainLayout/Sider/Sider';
 
@@ -12,10 +13,11 @@ interface MainLayoutProps {
 
 export const MainLayout = ({ className, children }: MainLayoutProps) => {
   return (
-    <div className={b(null, [className])}>
-      <Sider>
-      </Sider>
-      <div className={b('content')}>{children}</div>
-    </div>
+    <Layout className={b(null, [className])} style={{ minHeight: '100vh' }}>
+      <Sider />
+      <Layout>
+        <Layout.Content className={b('content')}>{children}</Layout.Content>
+      </Layout>
+    </Layout>
   );
 };
